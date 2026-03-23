@@ -1,0 +1,21 @@
+# fly.toml — Frontend app deployed as a separate Fly.io app
+
+app = 'crm-frontend'
+primary_region = 'iad'
+
+[build]
+  [build.args]
+    VITE_API_URL = ''
+
+[env]
+  API_BACKEND_URL = 'https://backend-fragrant-sunset-9084.fly.dev'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
